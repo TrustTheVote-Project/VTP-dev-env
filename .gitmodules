@@ -1,0 +1,9 @@
+[submodule "VoteTrackerPlus"]
+	path = VoteTrackerPlus
+	url = git@github.com:TrustTheVote-Project/VoteTrackerPlus.git
+[submodule "VTP-web-api"]
+	path = VTP-web-api
+	url = git@github.com:TrustTheVote-Project/VTP-web-api.git
+[submodule "VTP-mock-election.US.10"]
+	path = VTP-mock-election.US.10
+	url = git@github.com:TrustTheVote-Project/VTP-mock-election.US.10.git
