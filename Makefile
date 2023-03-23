@@ -32,11 +32,11 @@ default:
 # checkout the latest on main on all the submodules
 .PHONY: main
 main:
-	@git submodule init
+	git submodule init
 # get latest commits from remote
-	@git submodule update --recursive --remote
+	git submodule update --recursive --remote
 # set the submodules branch to main instead of detached
-	@git submodule foreach git checkout main
+	git submodule foreach git checkout main
 
 # Create a poetry based local-install for VTP development
 .PHONY: install
