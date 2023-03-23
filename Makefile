@@ -32,6 +32,7 @@ default:
 # checkout the latest on main on all the submodules
 .PHONY: main
 main:
+	@git submodule init
 # get latest commits from remote
 	@git submodule update --recursive --remote
 # set the submodules branch to main instead of detached
