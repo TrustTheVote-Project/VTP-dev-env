@@ -6,7 +6,3 @@
         branch = main
 	path = VTP-web-api
 	url = git@github.com:TrustTheVote-Project/VTP-web-api.git
-[submodule "VTP-mock-election.US.10"]
-        branch = main
-	path = VTP-mock-election.US.10
-	url = git@github.com:TrustTheVote-Project/VTP-mock-election.US.10.git
