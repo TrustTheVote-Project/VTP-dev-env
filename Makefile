@@ -25,6 +25,7 @@ endif
 default:
 	@echo "${RED}There is no default make target.${END}  Specify one of:"
 	@echo "main      - will git checkout latest main commit in each submodule"
+	@echo "update    - will update the submodules to the latest commits on main"
 	@echo "install   - will install the aggregate poetry env for backend VTP development"
 	@echo "etags     - constructs an emacs tags table"
 	@echo ""
@@ -36,6 +37,11 @@ main:
 # get latest commits from remote
 	git submodule update --recursive --remote
 # set the submodules branch to main instead of detached
+	${MAKE} update
+
+# Update the submodules to the latest commits on main
+.PHONY: update
+update:
 	git submodule foreach git checkout main
 
 # Create a poetry based local-install for VTP development
