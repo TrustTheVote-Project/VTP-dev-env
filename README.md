@@ -16,9 +16,11 @@ The point of this repo is basically to track work that spans multiple repos and 
 
 If one is working primarily in just one repo, then this repo can more or less be ignored.
 
+The three code repos (VTP-web-client, VTP-web-api, VoteTrackerPlus) follow normal GitHub software development practices - GitHub issues, pull requests (PRs), discussion lists, project pages.  All work is done on a branch, PR'ed, and squah merged.  The ElectionData repo (VTP-mock-election.US.16) only employs the main branch for actual changes while executing the election consumes branches.  Branches can be used for development in the ElectionData repo, but the current practice is to just create another ElectionData repo and if/when it is all good, just swap it in.
+
 Regarding python, poetry is primarly used to manage python environments and as such there is a pyproject.toml file in the VTP-web-api and VoteTracker+ repos.  Each python repo has its own python environment; however, the VTP-web-api poetry environment is a superset of the VoteTrackerPlus poetry environment.
 
-Regarding javascript, the javascript is entirely for the client side frontend and so the browser determines the version of javascript in play, etc.  Best practices are recommended for writing and testing the javascript, namely it need to work on the Chrome, Mozilla, and WebKit engines.  It also needs to be usable on mobile and desktop devices.
+Regarding javascript, the javascript is entirely for the client side frontend and so the browser determines the version of javascript in play, etc.  Best practices are recommended for writing and testing the javascript, namely it needs to work on the Chrome, Mozilla, and WebKit engines.  It also needs to be usable on mobile and desktop devices.
 
 All commits across all the repos need to be signed - see [Signing commits](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits)
 
