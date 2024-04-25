@@ -1,5 +1,6 @@
-## VTP-dev-env
-Something to hold the VoteTracker+ software development environment
+## General VoteTrackerPlus Information
+
+This is the VTP-dev-env repository, something to hold the VoteTrackerPlus software development environment
 
 A few _meta_ notes on working with VoteTracker+ software:
 
@@ -24,7 +25,43 @@ Regarding javascript, the javascript is entirely for the client side frontend an
 
 All commits across all the repos need to be signed - see [Signing commits](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits)
 
-Finally, a few GitHub status/reference links:
+## How to clone the VTP repos, including the mock (test) repo:
+
+```bash
+# Clone this repo (a https example - can also use ssh directly):
+$ git clone https://github.com/TrustTheVote-Project/VTP-dev-env.git
+
+# Run the makefile there, which will pull this and the other repos of interest
+# as git submodules
+$ cd VTP-dev-env
+$ make main
+
+# Using poetry perform a local install of VoteTracker+
+$ cd VoteTrackerPlus
+$ make poetry-build
+$ poetry shell
+
+# To setup a mock demo election using this (ElectionData) repo:
+$ cd ../VTP-mock-election.US.16
+$ setup-vtp-demo
+
+# To run the uvicorn server and have it listen on the LAN for incomgin 
+# connections, first exit the VoteTrackerPlus poetry environment,
+# create a web-api poetry environment, and run the uvicorn server:
+$ exit
+$ cd ../VTP-web-api
+$ make conjoin
+$ poetry shell
+$ poetry install
+$ make run HOST=0.0.0.0
+
+# Leaving off the HOST specification will run the uvicorn server listening
+# only on localhost.
+```
+
+Note - the above does not include running a VTP backend tabulation server - see the VoteTrackerPlus for more information regarding that level of demo/test operation.  A backend tabulation server is the server process responsible for merging cast CVR's to the git main branch, allowing for the eventual aggregation in the ElectionData repository of all the tabulation servers involved in the election.  Contest CVR's are initially commited on independent git branches by either the web-api or CLI.
+
+## Finally, a few GitHub status/reference links:
 
 [GitHub status](https://www.githubstatus.com/)
 

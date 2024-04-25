@@ -22,8 +22,8 @@ else
 endif
 
 # Let there be no default target
-.PHONY: default
-default:
+.PHONY: help
+help:
 	@echo "${RED}There is no default make target.${END}  Specify one of:"
 	@echo "main      - will git checkout latest main commit in each submodule"
 	@echo "status    - will print the git status for all the repos"
