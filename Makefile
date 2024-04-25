@@ -25,30 +25,31 @@ endif
 .PHONY: help
 help:
 	@echo "${RED}There is no default make target.${END}  Specify one of:"
-	@echo "main      - will git checkout latest main commit in each submodule"
+	@echo "init      - will git checkout each submodule to the tracked"
+	@echo "            commit (resulting in a git detached HEAD)"
+	@echo "latest    - will git checkout each submodule to the latest"
+	@echo "            commit on the remote HEAD"
 	@echo "status    - will print the git status for all the repos"
-	@echo "update    - will update the submodules to the latest commits on main"
 	@echo "etags     - constructs an emacs tags table"
 	@echo ""
 
 # checkout the latest on main on all the submodules
-.PHONY: main status update
-main:
+.PHONY: init
+init:
 	git submodule init
-# get latest commits from remote
-	git submodule update --recursive --remote
-# set the submodules branch to main instead of detached
-	${MAKE} update
+	git submodule update --checkout --remote --recursive
 
+.PHONY: latest
+latest:
+# ZZZ need to force re-attach any detached HEADS and pull
+	git submodule update --remote --recursive
+
+.PHONY: status
 status:
 	@echo "${YELLOW}Running: git submodule foreach git status${END}"
 	@git submodule foreach git status
 	@echo "${YELLOW}Running: git status${END}"
 	@git status
-
-# Update the submodules to the latest commits on main
-update:
-	git submodule foreach git checkout main
 
 # emacs tags
 ETAG_SRCS := $(shell find * -type f -name '*.py' -o -name '*.md' | grep -v defunct)
