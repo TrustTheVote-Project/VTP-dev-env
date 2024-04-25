@@ -27,8 +27,6 @@ help:
 	@echo "${RED}There is no default make target.${END}  Specify one of:"
 	@echo "init      - will git checkout each submodule to the tracked"
 	@echo "            commit (resulting in a git detached HEAD)"
-	@echo "latest    - will git checkout each submodule to the latest"
-	@echo "            commit on the remote HEAD"
 	@echo "status    - will print the git status for all the repos"
 	@echo "etags     - constructs an emacs tags table"
 	@echo ""
@@ -36,10 +34,6 @@ help:
 # checkout the latest on main on all the submodules
 .PHONY: init
 init:
-	git submodule update --init --checkout --remote --recursive
-
-.PHONY: latest
-latest:
 	git submodule update --init --merge --remote --recursive
 
 .PHONY: status
