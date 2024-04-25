@@ -36,13 +36,11 @@ help:
 # checkout the latest on main on all the submodules
 .PHONY: init
 init:
-	git submodule init
-	git submodule update --checkout --remote --recursive
+	git submodule update --init --checkout --remote --recursive
 
 .PHONY: latest
 latest:
-# ZZZ need to force re-attach any detached HEADS and pull
-	git submodule update --remote --recursive
+	git submodule update --init --merge --remote --recursive
 
 .PHONY: status
 status:
