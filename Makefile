@@ -10,7 +10,7 @@
 %.mk:
 
 # Variables
-SRC_DIR     := src/vtp
+BRANCH := main
 INTERACTIVE := $(shell test -t 0 && echo 1)
 ifdef INTERACTIVE
     RED	:= \033[0;31m
@@ -24,9 +24,12 @@ endif
 # Let there be no default target
 .PHONY: help
 help:
-	@echo "${RED}There is no default make target.${END}  Specify one of:"
+	@echo "${RED}Help info: the following commands are supported:${END}"
 	@echo "init      - will git checkout each submodule to the tracked"
 	@echo "            commit (resulting in a git detached HEAD)"
+	@echo "checkout  - will checkout the suppllied branch (via the"
+	@echo "            syntax BRANCH=main) ignoring submodule errors"
+	@echo "            if the branch does not exist"
 	@echo "status    - will print the git status for all the repos"
 	@echo "etags     - constructs an emacs tags table"
 	@echo ""
@@ -35,6 +38,10 @@ help:
 .PHONY: init
 init:
 	git submodule update --init --merge --remote --recursive
+
+.PHONY: checkout
+checkout:
+	git submodule foreach "git checkout ${BRANCH} || :"
 
 .PHONY: status
 status:
